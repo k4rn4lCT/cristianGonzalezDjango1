@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Plataformas</title>
+</head>
+<body>
+    <h1>Lista de Plataformas</h1>
+    <ul>
+        {% for plataformas in plataformas %}
+            <li>{{plataforma.nombre}} {{plataformas.precio}}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'cargarplataforma' %}">Agregar Plataformas</a>
+</body>
+</html>
