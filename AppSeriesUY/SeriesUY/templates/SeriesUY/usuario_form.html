@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cargar Usuarios</title>
-</head>
-<body>
-    <h1>Cargar Usuario</h1>
+{% extends 'SeriesUY/base.html' %}
+{% load static %}
+
+<title>{% block titulo %}Agregar Usuarios{% endblock %}</title>
+{% block contenido %}
+    <h1>Agregar Usuario</h1>
     <form method="post">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit">Guardar</button>
+        <button type="submit"class="btn btn-success">Guardar</button>
     </form>
-</body>
-</html>
+    <a href="{% url 'index' %}"class="btn btn-outline-danger"style="margin-top:10px">Volver al Inicio</a>
+{% endblock %}

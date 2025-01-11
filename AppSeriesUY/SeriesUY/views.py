@@ -2,6 +2,11 @@ from django.shortcuts import render,redirect
 from .forms import UsuarioForm,SerieForm,PlataformaForm
 from .models import Usuario,Serie,Plataforma
 
+# ================================== INDEX =======================================================
+def index(request):
+    return render(request,'SeriesUY/index.html')
+
+# ================================== USUARIO =======================================================
 def cargar_usuario(request):
     if request.method == 'POST':
         form = UsuarioForm(request.POST)
@@ -16,6 +21,8 @@ def lista_usuarios(request):
     usuarios = Usuario.objects.all()
     return render(request, 'SeriesUY/lista_usuarios.html',{'usuarios': usuarios})
 
+# ================================== SERIE =======================================================
+
 def cargar_serie(request):
     if request.method == 'POST':
         form = SerieForm(request.POST)
@@ -29,6 +36,8 @@ def cargar_serie(request):
 def lista_series(request):
     series = Serie.objects.all()
     return render(request, 'SeriesUY/lista_series.html',{'series': series})
+
+# ================================== PLATAFORMA =======================================================
 
 def cargar_plataforma(request):
     if request.method == 'POST':

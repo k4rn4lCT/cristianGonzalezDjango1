@@ -1,0 +1,21 @@
+{% extends 'SeriesUY/base.html' %}
+{% load static %}
+
+<title>{% block titulo %}SeriesUY{% endblock %}</title>
+
+{% block contenido %}
+<h1>SeriesUY - Inicio</h1>
+<h3>Apartados de l pagina</h3>
+<div style="margin-top:10px">
+    <a href="{% url 'cargar_usuario' %}"class="btn btn-primary">Agregar Usuario</a>
+    <a href="{% url 'lista_usuarios' %}"class="btn btn-info">Lista de Usuarios</a>
+</div>
+<div style="margin-top:10px">
+    <a href="{% url 'cargar_serie' %}"class="btn btn-primary">Agregar Serie</a>
+    <a href="{% url 'lista_series' %}"class="btn btn-info">Lista de Series</a>
+</div>
+<div style="margin-top:10px">  
+    <a href="{% url 'cargar_plataforma' %}"class="btn btn-primary">Agregar plataforma</a>
+    <a href="{% url 'lista_plataformas' %}"class="btn btn-info">Lista de Plataformas</a>
+</div>  
+{% endblock %}
