@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index,cargar_usuario,lista_usuarios,cargar_serie,lista_series,cargar_plataforma,lista_plataformas
+from .views import index,buscar,cargar_usuario,lista_usuarios,cargar_serie,lista_series,cargar_plataforma,lista_plataformas
 
 
 urlpatterns = [
@@ -10,4 +10,5 @@ urlpatterns = [
     path('series/',lista_series,name='lista_series'),
     path('cargar_plataforma/', cargar_plataforma, name = 'cargar_plataforma'),
     path('plataformas/',lista_plataformas,name='lista_plataformas'),
+    path('buscar/',buscar,name='buscar'),
 ]

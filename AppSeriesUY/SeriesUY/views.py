@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import UsuarioForm,SerieForm,PlataformaForm
 from .models import Usuario,Serie,Plataforma
+from django.db.models import Q
 
 # ================================== INDEX =======================================================
 def index(request):
@@ -53,3 +54,42 @@ def lista_plataformas(request):
     plataformas = Plataforma.objects.all()
     return render(request, 'SeriesUY/lista_plataformas.html',{'plataformas': plataformas})
 
+# ================================== BUSCADOR =======================================================
+def buscar(request):
+    query = request.GET.get('q', '')
+    resultados = []
+    if query:
+        usuarios = Usuario.objects.filter(
+            Q(rol__icontains=query) | Q(nombreUsuario__icontains=query) | Q(correo__icontains=query)
+        )
+        series = Serie.objects.filter(
+            Q(titulo__icontains=query) | Q(puntuacion__icontains=query)
+        )
+        plataformas = Plataforma.objects.filter(
+            Q(nombre__icontains=query) | Q(precio__icontains=query)
+        )
+
+        # Añadir los resultados a la lista
+        for usuario in usuarios:
+            resultados.append({
+                'tipo': 'Usuario',
+                'rol': usuario.rol,
+                'nombreUsuario': usuario.nombreUsuario,
+                'correo': usuario.correo,
+            })
+        for serie in series:
+            resultados.append({
+                'tipo': 'Serie',
+                'titulo': serie.titulo,
+                'puntuacion': serie.puntuacion,
+            })
+        for plataforma in plataformas:
+            resultados.append({
+                'tipo': 'Plataforma',
+                'nombre': plataforma.nombre,
+                'precio': plataforma.precio,
+            })
+
+    return render(request, 'SeriesUY/buscar.html', {'resultados': resultados, 'query': query})
+
+            
