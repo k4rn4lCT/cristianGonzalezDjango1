@@ -1,0 +1,65 @@
+{% extends 'SeriesUY/base.html' %}
+{% load static %}
+
+<title>{% block titulo %}Tu Feed{% endblock %}</title>
+
+{% block contenido %}
+<style>
+    .container {
+        background-color: rgb(255, 255, 255);
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .post-item {
+        background-color: #f8f9fa;
+        margin-bottom: 15px;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .post-item a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    .post-item a:hover {
+        color: #0056b3;
+    }
+
+    .btn-custom {
+        margin-top: 10px;
+    }
+
+    .btn-custom a {
+        text-decoration: none;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col text-center">
+            <h1 class="mb-4">Tu Feed</h1>
+            <a href="{% url 'post_new' %}" class="btn btn-success btn-custom">Postear</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <ul class="list-group">
+                {% for post in posts %}
+                    <li class="post-item list-group-item">
+                        <h5><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h5>
+                        <p>{{ post.content }}</p>
+                        <p class="text-muted">{{ post.date }}</p>
+                        <div class="btn-group">
+                            <a href="{% url 'post_update' post.id %}" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="{% url 'post_delete' post.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

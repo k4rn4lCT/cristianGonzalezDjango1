@@ -1,0 +1,56 @@
+{% extends 'SeriesUY/base.html' %}
+{% load static %}
+
+<title>{% block titulo %}Detalle de post{% endblock %}</title>
+
+{% block contenido %}
+<style>
+    .container {
+        background-color: rgb(255, 255, 255);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .post-detail {
+        margin-bottom: 20px;
+    }
+
+    .btn-custom {
+        margin-top: 15px;
+    }
+
+    .btn-custom a {
+        text-decoration: none;
+    }
+
+    .text-muted {
+        color: #6c757d;
+    }
+
+    .post-meta {
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <h1 class="mb-4">{{ post.titulo }}</h1>
+            <div class="post-meta">
+                <p><strong>Autor:</strong> {{ post.autor }}</p>
+                <p><strong>Fecha:</strong> {{ post.fecha }}</p>
+            </div>
+            <div class="post-detail">
+                <p>{{ post.cuerpo }}</p>
+            </div>
+            <div class="btn-group mt-4">
+                <a href="{% url 'post_update' post.id %}" class="btn btn-warning btn-lg me-2">Editar</a>
+                <a href="{% url 'post_delete' post.id %}" class="btn btn-danger btn-lg me-2">Eliminar</a>
+                <a href="{% url 'post_list' %}" class="btn btn-outline-secondary btn-lg">Volver</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
