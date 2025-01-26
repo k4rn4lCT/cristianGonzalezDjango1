@@ -7,7 +7,7 @@ class Posts(models.Model):
     autor = models.CharField(max_length=100, default='Autor')
     description = models.TextField()
     pub_date = models.DateTimeField('date published', default=timezone.now)
-    link = models.URLField()
+    link = models.URLField(blank=True)
     image = models.ImageField(upload_to='feed_images', blank=True, null=True)
     def get_absolute_url(self):
         return reverse('post_detail', kwargs={'pk': self.pk})

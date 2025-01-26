@@ -1,21 +1,45 @@
 {% extends 'SeriesUY/base.html' %}
 {% load static %}
 
-<title>{% block titulo %}Agregar Serie{% endblock %}</title>
+<title>{% block titulo %}Agregar Usuario{% endblock %}</title>
 {% block contenido %}
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8 col-12">
             <div class="card shadow-lg">
                 <div class="card-header text-center bg-primary text-white">
-                    <h3>Agregar Serie</h3>
+                    <h3>Agregar Usuario</h3>
                 </div>
                 <div class="card-body">
                     <form method="post">
                         {% csrf_token %}
                         <div class="mb-3">
-                            {{ form.as_p }}
+                            {{ form.as_p|safe }}
                         </div>
+                        <style>
+                            input[type="text"], input[type="number"], select, textarea {
+                                border: 2px solid #dee2e6;
+                                border-radius: 10px;
+                                padding: 12px;
+                                width: 100%;
+                                font-size: 16px;
+                                background-color: #f8f9fa;
+                                margin-bottom: 15px;
+                                transition: border-color 0.3s ease, box-shadow 0.3s ease;
+                            }
+
+                            input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
+                                border-color: #007bff;
+                                outline: none;
+                                box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+                                background-color: #ffffff;
+                            }
+
+                            input::placeholder, textarea::placeholder {
+                                color: #6c757d;
+                                opacity: 0.8;
+                            }
+                        </style>
                         <button type="submit" class="btn btn-success w-100">Guardar</button>
                     </form>
                 </div>

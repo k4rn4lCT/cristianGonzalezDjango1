@@ -2,12 +2,15 @@ from django.shortcuts import render,redirect
 from .forms import UsuarioForm,SerieForm,PlataformaForm
 from .models import Usuario,Serie,Plataforma
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 # ================================== INDEX =======================================================
+@login_required
 def index(request):
     return render(request,'SeriesUY/index.html')
 
 # ================================== USUARIO =======================================================
+@login_required
 def cargar_usuario(request):
     if request.method == 'POST':
         form = UsuarioForm(request.POST)
@@ -18,12 +21,13 @@ def cargar_usuario(request):
         form = UsuarioForm()
     return render(request, 'SeriesUY/usuario_form.html', {'form':form})
 
+@login_required
 def lista_usuarios(request):
     usuarios = Usuario.objects.all()
     return render(request, 'SeriesUY/lista_usuarios.html',{'usuarios': usuarios})
 
 # ================================== SERIE =======================================================
-
+@login_required
 def cargar_serie(request):
     if request.method == 'POST':
         form = SerieForm(request.POST)
@@ -34,12 +38,13 @@ def cargar_serie(request):
         form = SerieForm()
     return render(request, 'SeriesUY/serie_form.html', {'form':form})
 
+@login_required
 def lista_series(request):
     series = Serie.objects.all()
     return render(request, 'SeriesUY/lista_series.html',{'series': series})
 
 # ================================== PLATAFORMA =======================================================
-
+@login_required
 def cargar_plataforma(request):
     if request.method == 'POST':
         form = PlataformaForm(request.POST)
@@ -50,11 +55,13 @@ def cargar_plataforma(request):
         form = PlataformaForm()
     return render(request, 'SeriesUY/plataforma_form.html', {'form':form})
 
+@login_required
 def lista_plataformas(request):
     plataformas = Plataforma.objects.all()
     return render(request, 'SeriesUY/lista_plataformas.html',{'plataformas': plataformas})
 
 # ================================== BUSCADOR =======================================================
+@login_required
 def buscar(request):
     query = request.GET.get('q', '')
     resultados = []

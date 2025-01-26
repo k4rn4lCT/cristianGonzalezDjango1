@@ -1,7 +1,7 @@
 {% extends 'SeriesUY/base.html' %}
 {% load static %}
 
-<title>{% block titulo %}Tu Feed{% endblock %}</title>
+<title>{% block titulo %}Tu Tienda{% endblock %}</title>
 
 {% block contenido %}
 <style>
@@ -40,21 +40,21 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col text-center">
-            <h1 class="mb-4">Tu Feed</h1>
-            <a href="{% url 'post_new' %}" class="btn btn-success btn-custom">Postear</a>
+            <h1 class="mb-4">Tu Tienda</h1>
+            <a href="{% url 'venta_new' %}" class="btn btn-success btn-custom">Vender</a>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <ul class="list-group">
-                {% for post in posts %}
+                {% for venta in ventas %}
                     <li class="post-item list-group-item">
-                        <h5><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h5>
-                        <p>{{ post.description }}</p>
-                        <p class="text-muted">{{ post.pub_date }}</p>
+                        <h5><a href="{% url 'venta_detail' venta.id %}">{{ venta.nombre }}</a></h5>
+                        <p>{{ venta.descripcion }}</p>
+                        <p class="text-muted">{{venta.pub_date }}</p>
                         <div class="btn-group">
-                            <a href="{% url 'post_update' post.id %}" class="btn btn-warning btn-sm">Editar</a>
-                            <a href="{% url 'post_delete' post.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                            <a href="{% url 'venta_update' venta.id %}" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="{% url 'venta_delete' venta.id %}" class="btn btn-danger btn-sm">Eliminar</a>
                         </div>
                     </li>
                 {% endfor %}

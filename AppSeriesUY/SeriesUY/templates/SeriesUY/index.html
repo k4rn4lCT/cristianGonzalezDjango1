@@ -5,11 +5,46 @@
 
 {% block contenido %}
 <style>
-    .container{
-      background-color: rgb(255, 255, 255);
-      padding: 10px;
-      border-radius: 10px;
+    .welcome-container {
+        background-color: #f8f9fa;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .welcome-title {
+        color: #343a40;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .welcome-subtitle {
+        color: #6c757d;
+        text-align: justify;
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    .btn-custom {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn-custom a {
+        text-decoration: none;
+        font-size: 16px;
     }
 </style>
-    <h1>¡Bienvenidos a la primera plataforma para adictos a las series de Uruguay!</h1>
+
+<div class="container welcome-container mt-5">
+    <h1 class="welcome-title">¡Bienvenidos a SeriesUY!</h1>
+    <h3 class="welcome-subtitle">
+        En esta página podrás encontrar información sobre tus series y películas favoritas, 
+        así como también podrás comprar desde merchandising de las mismas hasta incluso 
+        adquirirlas en formato físico para tu colección.
+    </h3>
+</div>
+
 {% endblock %}

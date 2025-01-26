@@ -1,7 +1,7 @@
 {% extends 'SeriesUY/base.html' %}
 {% load static %}
 
-<title>{% block titulo %}Crear post{% endblock %}
+<title>{% block titulo %}Crear venta{% endblock %}
 
 {% block contenido %}
 <style>
@@ -28,7 +28,7 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col">
-            <h1 class="mb-4">{{ view.object|default:"Crear post" }}</h1>
+            <h1 class="mb-4">{{ view.object|default:"Crear venta" }}</h1>
             <form method="post">
                 {% csrf_token %}
                 <div class="form-group">
@@ -54,7 +54,7 @@
                 <button type="submit" class="btn btn-primary btn-lg btn-custom">Enviar</button>
             </form>
             <div class="mt-3">
-                <a href="{% url 'post_list' %}" class="btn btn-outline-secondary btn-lg">Volver</a>
+                <a href="{% url 'venta_list' %}" class="btn btn-outline-secondary btn-lg">Volver</a>
             </div>
         </div>
     </div>
