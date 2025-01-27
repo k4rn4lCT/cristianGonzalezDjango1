@@ -77,7 +77,7 @@
           {% if user.is_authenticated %}
             <form method="post" action="{% url 'logout' %}">
               {% csrf_token %}
-              <button type="submit" class="btn btn-link">Cerrar sesión</button>
+              <p class="text-white fw-bold">Usuario: {{ user.username }}<button type="submit" class="btn btn-link">Cerrar sesión</button></p>
             </form>
           {% else %}
             <li class="nav-item">

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index,buscar,cargar_usuario,lista_usuarios,cargar_serie,lista_series,cargar_plataforma,lista_plataformas
+from .views import index,buscar,cargar_usuario,lista_usuarios,cargar_serie,lista_series,cargar_plataforma,lista_plataformas,register
 from django.contrib.auth.views import LoginView,LogoutView
 
 urlpatterns = [
@@ -13,4 +13,5 @@ urlpatterns = [
     path('buscar/',buscar,name='buscar'),
     path('login/',LoginView.as_view(template_name='SeriesUY/login.html'),name='login'),
     path('logout/',LogoutView.as_view(),name='logout'),
+    path('register/',register,name='register'),
 ]

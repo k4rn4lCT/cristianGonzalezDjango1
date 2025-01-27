@@ -1,0 +1,34 @@
+{% extends 'SeriesUY/base.html' %}
+
+<title>{% block titulo %}Registrarse{% endblock %}</title>
+
+{% block contenido %}
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-sm p-4 rounded" style="max-width: 500px; width: 100%; background-color: #f8f9fa;">
+        <h2 class="text-center mb-4 text-primary">Registrarse</h2>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="id_username" class="form-label">Nombre de usuario</label>
+                <input type="text" name="username" id="id_username" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="id_password1" class="form-label">Contraseña</label>
+                <input type="password" name="password1" id="id_password1" class="form-control" placeholder="Ingrese contraseña" required>
+            </div>
+            <div class="mb-3">
+                <label for="id_password2" class="form-label">Confirmar contraseña</label>
+                <input type="password" name="password2" id="id_password2" class="form-control" placeholder="Confirme contraseña" required>
+            </div>
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+            </div>
+        </form>
+        <hr class="my-4">
+        <div class="text-center">
+            <p class="mb-0">¿Ya tienes una cuenta? <a href="{% url 'login' %}" class="text-primary">Iniciar sesión</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

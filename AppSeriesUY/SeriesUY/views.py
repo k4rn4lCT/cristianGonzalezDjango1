@@ -3,6 +3,9 @@ from .forms import UsuarioForm,SerieForm,PlataformaForm
 from .models import Usuario,Serie,Plataforma
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+
 
 # ================================== INDEX =======================================================
 @login_required
@@ -99,4 +102,20 @@ def buscar(request):
 
     return render(request, 'SeriesUY/buscar.html', {'resultados': resultados, 'query': query})
 
-            
+# ================================== register =======================================================
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Cuenta creada con éxito!')
+            return redirect('login')
+        else:
+            messages.error(request, 'Por favor corrija los errores del formulario.')
+            for field in form:
+                for error in field.errors:
+                    print(f"Error en {field.name}: {error}")
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'SeriesUY/register.html', {'form': form})
