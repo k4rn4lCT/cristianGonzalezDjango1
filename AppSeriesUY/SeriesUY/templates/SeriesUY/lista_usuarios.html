@@ -1,7 +1,7 @@
 {% extends 'SeriesUY/base.html' %}
 {% load static %}
 
-<title>{% block titulo %}Lista de Usuarios{% endblock %}</title>
+<title>{% block titulo %}Lista de Clientes{% endblock %}</title>
 {% block contenido %}
 <style>
     .container{
@@ -11,14 +11,11 @@
     }
 </style>
 <div class="container mt-5">
-    <!-- Título -->
     <div class="row mb-4">
         <div class="col text-center">
-            <h1>Lista de Usuarios</h1>
+            <h1>Lista de Clientes</h1>
         </div>
     </div>
-
-    <!-- Lista de usuarios con fondo blanco y sombra -->
     <div class="row">
         <div class="col bg-white p-4 rounded shadow-sm">
             <ul class="list-group">
@@ -33,7 +30,6 @@
         </div>
     </div>
 
-    <!-- Botones -->
     <div class="row mt-4">
         <div class="col text-center">
             <a href="{% url 'cargar_usuario' %}" class="btn btn-success me-2">Agregar Usuario</a>

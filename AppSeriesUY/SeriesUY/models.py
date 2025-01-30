@@ -21,3 +21,4 @@ class Plataforma(models.Model):
     
     def __str__(self):
         return f'Plataforma: {self.nombre} Precio: {self.precio}'
+    

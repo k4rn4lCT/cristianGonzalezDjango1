@@ -1,10 +1,11 @@
 from django.shortcuts import render,redirect
-from .forms import UsuarioForm,SerieForm,PlataformaForm
+from .forms import UsuarioForm,SerieForm,PlataformaForm,UserEditForm
 from .models import Usuario,Serie,Plataforma
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
 
 
 # ================================== INDEX =======================================================
@@ -108,14 +109,40 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Cuenta creada con éxito!')
-            return redirect('login')
+            return redirect('login')  # Redirige al login después de registrar al usuario
         else:
-            messages.error(request, 'Por favor corrija los errores del formulario.')
-            for field in form:
-                for error in field.errors:
-                    print(f"Error en {field.name}: {error}")
+            # Si el formulario no es válido, pasamos el formulario con los errores al template
+            return render(request, 'SeriesUY/register.html', {'form': form})
     else:
         form = UserCreationForm()
-
     return render(request, 'SeriesUY/register.html', {'form': form})
+
+
+@login_required
+def about(request):
+    return render(request,'SeriesUY/about.html')
+
+@login_required
+def perfil(request):
+    usuario = request.user
+    return render(request, 'SeriesUY/perfil.html', {'usuario': usuario})
+
+@login_required
+def editar_perfil(request):
+    if request.method == 'POST':
+        user_form = UserEditForm(request.POST, instance=request.user)
+        password_form = PasswordChangeForm(request.user, request.POST)
+
+        if user_form.is_valid() and password_form.is_valid():
+            user_form.save()
+            password_form.save()
+            update_session_auth_hash(request, password_form.user)
+            return redirect('perfil')
+    else:
+        user_form = UserEditForm(instance=request.user)
+        password_form = PasswordChangeForm(request.user)
+
+    return render(request, 'SeriesUY/editar_perfil.html', {
+        'user_form': user_form,
+        'password_form': password_form,
+    })

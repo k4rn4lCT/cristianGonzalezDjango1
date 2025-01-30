@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'SeriesUY',
     'Feed',
     'Tienda',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

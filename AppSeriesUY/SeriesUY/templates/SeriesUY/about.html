@@ -1,0 +1,55 @@
+{% extends 'SeriesUY/base.html' %}
+{% load static %}
+
+<title>{% block titulo %}Acerca de mi{% endblock %}</title>
+
+{% block contenido %}
+    <style>
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        #main-header {
+            background-color: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+        }
+        #main-header h1 {
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+            font-size: 24px;
+        }
+        #about-section {
+            padding: 20px;
+            background: #fff;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        #about-section img {
+            float: left;
+            margin-right: 20px;
+            border-radius: 50%;
+        }
+        #about-section p {
+            line-height: 1.6;
+        }
+    </style>
+    <header id="main-header">
+        <div class="container">
+            <h1>Acerca de mi</h1>
+        </div>
+    </header>
+    <div class="container">
+        <section id="about-section">
+            <img src="{% static 'img/perfil-cris.jpeg' %}" alt="Your Photo" width="150" height="150">
+            <h2>Cristian Gonzalez</h2>
+            <p>¡Hola! Mi nombre es Cristian González. Mi enfoque profesional está en el área de telecomunicaciones, aunque mi verdadera pasión siempre ha sido la programación. Aunque me he formado principalmente en telecomunicaciones, la programación ha sido siempre mi hobby.</p>
+            <p>No dudes en contactarme a través de mi correo electrónico: cristian.gonzalez.romero10@gmail.com o explorar algunos de mis proyectos en GitHub: <a href="https://github.com/k4rn4lCT" target="_blank">https://github.com/k4rn4lCT</a>.</p>
+                 
+        </section>
+    </div>
+{% endblock %}

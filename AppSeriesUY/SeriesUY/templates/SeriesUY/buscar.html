@@ -11,16 +11,13 @@
     }
 </style>
     <div class="container mt-5">
-        <p class="text-center">Utiliza el buscador para encontrar usuarios, series o plataformas.</p>
-
-        <!-- Cuadro de búsqueda -->
+        <p class="text-center">Utiliza el buscador para encontrar clientes, series o plataformas.</p>
         <form method="get" action="{% url 'buscar' %}" class="my-4">
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Buscar..." value="{{ query|default:'' }}">
                 <button class="btn btn-primary" type="submit">Buscar</button>
             </div>
         </form>
-        <!-- Tabla de resultados -->
         {% if resultados %}
             <table class="table table-striped table-bordered">
                 <thead class="table-dark">

@@ -1,0 +1,23 @@
+{% extends 'SeriesUY/base.html' %}
+
+{% block titulo %}Mi Perfil{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5">
+    <h1 class="text-center">Mi Perfil</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4">
+                <h3>Datos del Usuario</h3>
+                <p><strong>Nombre de Usuario:</strong> {{ usuario.username }}</p>
+                <p><strong>Email:</strong> {{ usuario.email }}</p>
+                <p><strong>Fecha de Registro:</strong> {{ usuario.date_joined|date:"d/m/Y" }}</p>
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'index' %}" class="btn btn-danger mt-3">Cerrar sesión</a>
+                    <a href="{% url 'editar_perfil' %}" class="btn btn-primary mt-3">Editar Perfil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

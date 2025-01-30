@@ -26,31 +26,38 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Usuarios
+              Clientes
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'cargar_usuario' %}">Agregar usuario</a></li>
-              <li><a class="dropdown-item" href="{% url 'lista_usuarios' %}">Listar usuarios</a></li>
-            </ul>
+              <li><a class="dropdown-item" href="{% url 'cargar_usuario' %}">Agregar clientes</a></li>
+              {% if user.is_staff %}
+                  <li><a class="dropdown-item" href="{% url 'lista_usuarios' %}">Listar clientes</a></li>
+              {% endif %}
+          </ul>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Series
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'cargar_serie' %}">Agregar serie</a></li>
-              <li><a class="dropdown-item" href="{% url 'lista_series' %}">Listar serie</a></li>
-            </ul>
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Series
+              </a>
+              <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'cargar_serie' %}">Agregar serie</a></li>
+                  {% if user.is_staff %}
+                      <li><a class="dropdown-item" href="{% url 'lista_series' %}">Listar serie</a></li>
+                  {% endif %}
+              </ul>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Plataformas
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'cargar_plataforma' %}">Agregar plataforma</a></li>
-              <li><a class="dropdown-item" href="{% url 'lista_plataformas' %}">Listar plataformas</a></li>
-            </ul>
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Plataformas
+              </a>
+              <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'cargar_plataforma' %}">Agregar plataforma</a></li>
+                  {% if user.is_staff %}
+                      <li><a class="dropdown-item" href="{% url 'lista_plataformas' %}">Listar plataformas</a></li>
+                  {% endif %}
+              </ul>
           </li>
+          
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'buscar' %}">Buscar</a>
           </li>
@@ -72,18 +79,40 @@
               <li><a class="dropdown-item" href="{% url 'venta_new' %}">Crea una venta</a></li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'about' %}">Acerca de mi</a>
+          </li>
         </ul>
         <ul class="navbar-nav ms-auto">
           {% if user.is_authenticated %}
-            <form method="post" action="{% url 'logout' %}">
-              {% csrf_token %}
-              <p class="text-white fw-bold">Usuario: {{ user.username }}<button type="submit" class="btn btn-link">Cerrar sesión</button></p>
-            </form>
-          {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
-            </li>
-          {% endif %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Mi Perfil
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{% url 'perfil' %}">Ver Perfil</a></li>
+              <li>
+                <div class="dropdown-divider"></div> 
+                <li>
+                  <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="dropdown-item text-danger">
+                      Cerrar sesión
+                    </button>
+                  </form>
+                </li>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <p class="nav-link text-white mb-0">Usuario: <span class="fw-bold">{{ user.username }}</span></p>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+          </li>
+        {% endif %}
+        
         </ul>
       </div>
     </div>

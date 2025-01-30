@@ -53,8 +53,10 @@
                         <p>{{ post.description }}</p>
                         <p class="text-muted">{{ post.pub_date }}</p>
                         <div class="btn-group">
-                            <a href="{% url 'post_update' post.id %}" class="btn btn-warning btn-sm">Editar</a>
-                            <a href="{% url 'post_delete' post.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                            <a href="{% url 'post_update' post.id %}" class="btn btn-primary btn-sm text-white">Editar</a>
+                            <a href="{% url 'post_delete' post.id %}" class="btn btn-danger btn-sm text-white">Eliminar</a>
+
+
                         </div>
                     </li>
                 {% endfor %}

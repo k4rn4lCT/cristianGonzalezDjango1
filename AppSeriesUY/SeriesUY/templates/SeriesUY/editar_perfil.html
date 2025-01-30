@@ -1,0 +1,63 @@
+{% extends 'SeriesUY/base.html' %}
+{% load widget_tweaks %}
+
+{% block titulo %}Editar Perfil{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4 shadow-sm">
+                <h1 class="text-center mb-4">Editar Perfil</h1>
+                <h3 class="mb-4">Actualiza tus datos</h3>
+                {% if user_form.errors or password_form.errors %}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {% for field in user_form %}
+                                {% for error in field.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for field in password_form %}
+                                {% for error in field.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_username" class="form-label">Nombre de Usuario</label>
+                        {{ user_form.username|add_class:"form-control" }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_email" class="form-label">Correo Electrónico</label>
+                        {{ user_form.email|add_class:"form-control" }}
+                    </div>
+
+                    <h4 class="mt-4">Cambiar Contraseña</h4>
+                    <div class="mb-3">
+                        <label for="id_old_password" class="form-label">Contraseña Actual</label>
+                        {{ password_form.old_password|add_class:"form-control" }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_new_password1" class="form-label">Nueva Contraseña</label>
+                        {{ password_form.new_password1|add_class:"form-control" }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_new_password2" class="form-label">Confirmar Nueva Contraseña</label>
+                        {{ password_form.new_password2|add_class:"form-control" }}
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success py-2 mt-3">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
